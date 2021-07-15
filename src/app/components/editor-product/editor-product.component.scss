@@ -1,0 +1,556 @@
+/* -------------------------------------------------------------------------- */
+/*                                   themes                                   */
+/* -------------------------------------------------------------------------- */
+//*DEFINE THEME HERE with mixin or var
+$color_primary: #564aff;
+$color_secondary: white;
+$color_Tertiary: #707070;
+$color_error: rgb(255, 41, 41);
+$color_success: rgb(0, 199, 0);
+$margin_formElements: 30px;
+
+@mixin theme_blue() {
+  background-color: $color_primary;
+  color: $color_secondary;
+}
+
+@mixin rounded_border($colorise: #564aff) {
+  border: 1px solid $colorise;
+  border-radius: 2px 2px 2px 2px;
+}
+
+@mixin margin_messages() {
+  width: 100%;
+  padding: 15px 0;
+}
+
+@mixin error() {
+  text-align: center;
+  list-style-type: none;
+  color: white;
+  background-color: $color-error;
+  @include rounded_border($color-error);
+}
+
+@mixin success() {
+  // text-align: center;
+  list-style-type: none;
+  color: white;
+  background-color: $color_success;
+  @include rounded_border($color_success);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   config                                   */
+/* -------------------------------------------------------------------------- */
+//*------------------------------ BP variables ------------------------------*/
+$font_size_1024: 16px;
+$title_size_1024: 22px;
+
+$font_size_768: 20px;
+$title_size_768: 26px;
+
+$fig_size_568: 400px;
+$img_size_568: $fig_size_568 / 5 * 4;
+
+$fig_size_320: 300px;
+$img_size_320: $fig_size_568 / 5 * 4;
+//*--------------------------------------------------------------------------*/
+
+$fig_size: 500px;
+$img_size: $fig_size / 5 * 4;
+$margin_Elements: 40px;
+$height_formElements: 30px;
+$width_form: 180px;
+$font_size: 14px;
+$title_size: 20px;
+
+/*FUNCTION*/
+@function rem($size) {
+  $remSize: $size / 16px;
+  //Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+/*USAGE*/
+//.ele{
+//font-size:rem(10px);
+//}
+
+/* ------------------------------------ * ----------------------------------- */
+/* ------------------------------------ * ----------------------------------- */
+//? ---------------------------------- BLOCK --------------------------------- */
+.container {
+  //!structure
+  margin: 0 $margin_Elements;
+  font-size: rem($font_size);
+  //!theme
+  color: $color_Tertiary;
+}
+
+.product {
+  //!structure
+  display: flex;
+}
+
+.heading {
+  //!structure
+  position: relative;
+  margin: 80px 0;
+}
+//? --------------------------------- ELEMENT -------------------------------- */
+// heading
+.heading__link {
+  //!structure
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  //!theme
+  color: $color_primary;
+}
+
+.heading__title {
+  //!structure
+  text-align: center;
+  font-size: rem(30px);
+  //!theme
+  color: $color_primary;
+}
+
+// img of product
+.product__fig {
+  //!structure
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  min-width: $fig_size;
+  min-height: $fig_size;
+  //!theme
+  background-color: $color_secondary;
+}
+
+.product__fig__img {
+  //!structure
+  max-width: $img_size;
+  max-height: $img_size;
+}
+
+// description
+.product__details {
+  //!structure
+  margin: 0 $margin_Elements;
+}
+
+.product__details__title {
+  //!structure
+  margin: 0;
+  font-size: rem($title_size);
+  //!theme
+  color: $color_primary;
+}
+
+.product__details__description {
+  //!structure
+  text-align: justify;
+}
+
+// price and tva
+.product__details__price {
+  //!structure
+  display: flex;
+  justify-content: space-between;
+}
+
+.product__details__price__title {
+  //!structure
+  margin: 15px 0 0 0;
+  font-size: rem($title_size);
+  //!theme
+  color: $color_primary;
+}
+
+.product__details__prices__form {
+  //!structure
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: $width_form;
+}
+
+.inputPrice {
+  //!structure
+  height: $height_formElements;
+  width: $width_form;
+  padding: 0 0 0 10px;
+  margin: $margin_formElements 0;
+  //!theme
+  @include rounded_border($color_primary);
+  color: $color_Tertiary;
+}
+
+.p__d__prices__form__container_input::after {
+  //!structure
+  content: "€";
+  position: absolute;
+  top: 78px;
+  right: 0px;
+  font-size: rem(14px);
+  //!theme
+  color: #969696;
+}
+
+.price__sumbit {
+  //!structure
+  height: $height_formElements;
+  outline: none;
+  //!theme
+  @include rounded_border();
+  @include theme_blue();
+}
+//error
+.product__details__error {
+  //!structure
+  @include margin_messages();
+  //!theme
+  @include error();
+}
+
+.product__details__error_svg {
+  width: 40px;
+  margin: auto;
+}
+
+//success
+.product__details__success {
+  //!structure
+  display: flex;
+  margin-top: 15px;
+  //!theme
+  @include success();
+}
+
+.product__details__success__text {
+  margin: auto;
+}
+
+.product__details__success_svg {
+  display: block;
+  width: 40px;
+}
+
+//tva
+.product__details__prices__tva {
+  //!structure
+  margin: auto 0;
+}
+
+.p__d__prices__tva__bolder {
+  //!theme
+  font-weight: bolder;
+}
+//?------------------------------- MODIFIER ------------------------------- */
+
+.inputPrice:focus {
+  outline: none;
+}
+
+//error spawn:
+.product__details__error--unactive {
+  display: none;
+}
+
+.product__details__error--active {
+  display: block;
+}
+
+//success spawn:
+.product__details__success--active {
+  //!structure
+  display: flex;
+  margin-top: 15px;
+  //!theme
+  @include success();
+}
+
+.product__details__success--unactive {
+  display: none;
+}
+
+/*--------------------------------------------------------------------------- */
+/*                               category color                               */
+/* -------------------------------------------------------------------------- */
+//!structure of category color
+.structure_category {
+  //!structure
+  white-space: nowrap;
+  border-radius: 20px 20px 20px 20px;
+  padding: 6px 12px;
+  //!theme
+  color: $color_secondary;
+}
+
+.product__details__category__title {
+  //!structure
+  margin: 0 0 15px 0;
+  font-size: rem($title_size);
+  //!theme
+  color: $color_primary;
+}
+
+//!theme - it's dynamic with js
+.womensClothing {
+  //!theme
+  background-color: #ffa846;
+}
+.mensClothing {
+  //!theme
+  background-color: #4683ff;
+}
+.jewelery {
+  //!theme
+  background-color: #32b436;
+}
+.electronics {
+  //!theme
+  background-color: magenta;
+}
+/* ------------------------------------ . ----------------------------------- */
+
+//? -------------------------------------------------------------------------- *//
+//?                                 BREAK POINT                                *//
+//? -------------------------------------------------------------------------- *//
+//! ONLY STRUCTURE IS MODIFY
+
+@media screen and (max-width: 1155px) {
+  //?--------------------------------- ELEMENT -------------------------------- */
+
+  .product__details__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product__details__prices__tva {
+    margin-top: $margin_formElements;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  //? ---------------------------------- BLOCK ---------------------------------*/
+  .product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    margin: 0 20px;
+  }
+
+  //? -------------------------------- ELEMENTS --------------------------------*/
+  //Order of elements
+  .product__details__category {
+    order: 1;
+  }
+
+  .product__fig {
+    order: 2;
+  }
+
+  .product__details {
+    order: 3;
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* --------------------------------- Heading -------------------------------- */
+  .heading__title {
+    margin: 0;
+  }
+
+  /* ----------------------------------- . ----------------------------------- */
+  /* -------------------------------- Category -------------------------------- */
+  .product__details__category {
+    margin: -40px 0 30px 0;
+  }
+
+  .product__details__category__title {
+    text-align: center;
+    font-size: rem($title_size_1024);
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* ------------------------------- description ------------------------------ */
+  .product__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product__details__price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product__details__title {
+    font-size: rem($title_size_1024);
+  }
+  .product__details__description {
+    font-size: rem($font_size_1024);
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* ---------------------------------- price --------------------------------- */
+  .product__details__prices__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product__details__price__title {
+    font-size: rem($title_size_1024);
+  }
+
+  .p__d__prices__form__container_input {
+    font-size: rem($font_size_1024);
+  }
+  .p__d__prices__form__container_input::after {
+    font-size: rem($font_size_1024);
+    top: 62px;
+  }
+  .inputPrice {
+    margin: 15px 0;
+  }
+  .price__sumbit {
+    font-size: rem($font_size_1024);
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* ----------------------------------- TVA ---------------------------------- */
+  .product__details__prices__tva {
+    font-size: rem($font_size_1024);
+    margin: 15px 0;
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* -------------------------- Message error/success ------------------------- */
+  .product__details__success {
+    width: 100%;
+    font-size: rem($font_size_1024);
+  }
+
+  .product__details__error {
+    font-size: rem($font_size_1024);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  //? ---------------------------------- ELEMENT -------------------------------- */
+
+  /* -------------------------------- Category -------------------------------- */
+  .product__details {
+    margin: 0;
+  }
+
+  .product__details__category__title {
+    font-size: rem($title_size_768);
+  }
+
+  .structure_category {
+    font-size: rem($font_size_768);
+  }
+  /* ------------------------------- description ------------------------------ */
+  .product__details__title {
+    font-size: rem($title_size_768);
+  }
+  .product__details__description {
+    font-size: rem($font_size_768);
+  }
+
+  /* ---------------------------------- price --------------------------------- */
+  .product__details__price__title {
+    font-size: rem($title_size_768);
+  }
+
+  .p__d__prices__form__container_input {
+    font-size: rem($font_size_768);
+  }
+  .inputPrice {
+    height: 50px;
+    font-size: rem($font_size_768);
+  }
+  .p__d__prices__form__container_input::after {
+    font-size: rem($font_size_768 + 20px);
+    top: 65px;
+  }
+  .price__sumbit {
+    font-size: rem($title_size_768);
+    height: 75px;
+    width: 200px;
+  }
+
+  /* ------------------------------------ . ----------------------------------- */
+  /* ----------------------------------- TVA ---------------------------------- */
+  .product__details__prices__tva {
+    font-size: rem($font_size_768);
+  }
+  /* ------------------------------------ . ----------------------------------- */
+  /* -------------------------- Message error/success ------------------------- */
+  .product__details__success {
+    font-size: rem($font_size_768);
+  }
+
+  .product__details__error {
+    font-size: rem($font_size_768);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  //? ---------------------------------- ELEMENT -------------------------------- */
+  .heading__link {
+    //!structure
+    display: block;
+    position: absolute;
+    left: 190px;
+    top: -130px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .heading__title {
+    margin-top: 150px;
+  }
+
+  // img of product
+  .product__fig {
+    //!structure
+    min-width: $fig_size_568;
+    min-height: $fig_size_568;
+  }
+
+  .product__fig__img {
+    //!structure
+    max-width: $img_size_568;
+    max-height: $img_size_568;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  //? ---------------------------------- ELEMENT -------------------------------- */
+  .heading__link {
+    //!structure
+    left: 60px;
+    top: -150px;
+    width: 150px;
+    height: 150px;
+  }
+
+  // img of product
+  .product__fig {
+    //!structure
+    min-width: $fig_size_320;
+    min-height: $fig_size_320;
+  }
+
+  .product__fig__img {
+    //!structure
+    max-width: $img_size_320;
+    max-height: $img_size_320;
+  }
+}

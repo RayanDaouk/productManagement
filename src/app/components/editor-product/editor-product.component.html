@@ -1,0 +1,58 @@
+<main class="container">
+    <div class="heading">
+        <a [routerLink]="['/']" class="heading__link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24 " stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        </a>
+        <h1 class="heading__title">{{title}}</h1>
+    </div>
+    <div class="product">
+        <figure class="product__fig">
+            <img class="product__fig__img" [src]="productImg" [alt]="'img of '+ title" />
+        </figure>
+        <div class="product__details">
+            <h3 class="product__details__title">Description</h3>
+            <p class="product__details__description">{{description}}</p>
+            <div class="product__details__price">
+                <form class="product__details__prices__form">
+                    <h3 class="product__details__price__title">Price</h3>
+                    <span class="p__d__prices__form__container_input">
+                        <input class="inputPrice" type="text" [(ngModel)]="inputValue"
+                            [ngModelOptions]="{standalone: true}" />
+                    </span>
+                    <button class="price__sumbit" type="submit" (click)="updateProduct()">Update product</button>
+                </form>
+                <div class="product__details__prices__tva">
+                    <span><span class="p__d__prices__tva__bolder">Price </span>(including TVA): {{tvaPrice}} €</span>
+                </div>
+            </div>
+            <ul class="product__details__error product__details__error--unactive" id="error">
+                <li class="product__details__error_svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </li>
+                <li>*Add a new price to update product.</li>
+                <li>*You must use only numbers.</li>
+                <li>*You must use dot to float numbers.</li>
+            </ul>
+            <div class="product__details__success
+            product__details__success--unactive" id="success">
+                <div class="product__details__success_svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <div class="product__details__success__text">Update success</div>
+            </div>
+        </div>
+        <div class="product__details__category">
+            <h3 class="product__details__category__title">Category</h3>
+            <span class="structure_category" [class]="colorCategory(category)">{{category}}</span>
+        </div>
+    </div>
+</main>

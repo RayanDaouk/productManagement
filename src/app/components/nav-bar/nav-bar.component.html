@@ -1,0 +1,32 @@
+<nav class="nav_bar" [class.--unactive_grow_menu]="!isActive" [class.--active_grow_menu]="isActive">
+    <div id="nav_bar__btn">
+        <div class="nav_bar__container">
+            <svg id="nav_bar__btn_menu" (click)="popMenu()" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 6h16M2 12h16M2 18h16" />
+            </svg>
+            <svg id="nav_bar__btn_back" (click)="popMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M4.293 15.707a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414 0zm0-6a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 5.414 5.707 9.707a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd" />
+            </svg>
+            <div class="nav_bar__logo">
+                <div class="nav_bar__logo__circle_white">
+                    <div class="nav_bar__logo__circle_blue"></div>
+                </div>
+                <div class="nav_bar__logo__tag">
+                    <div>Circle</div>
+                    <div>Products</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav_bar__menu" [class.menu--unactive]="!isActive" [class.menu--active]="isActive">
+        <h3 class="nav_bar__menu__title">Dashboard</h3>
+        <li><a class="nav_bar__menu__link" [routerLink]="['/']" (click)="popMenu()">Products management</a></li>
+        <li><a class="nav_bar__menu__link" href="#">Employees management</a></li>
+        <span class="nav_bar__menu__hr"></span>
+        <li><a class="nav_bar__menu__link" href="#">Logout</a></li>
+    </ul>
+</nav>

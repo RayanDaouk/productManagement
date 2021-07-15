@@ -1,0 +1,9 @@
+<div class="array_of_products">
+    <h1 class="array_of_products__title">Products management</h1>
+    <app-heading class="array_of_products__heading"></app-heading>
+    <div class="array_of_products__list" *ngFor="let product of products">
+        <app-product [routerLink]="['/editProd',product.id]" [productName]="product.title"
+            [productCategory]="product.category" [productPrice]="product.price" [tvaPrice]="calcTva(product.price)"
+            [classCategory]="colorCategory(product.category)"></app-product>
+    </div>
+</div>

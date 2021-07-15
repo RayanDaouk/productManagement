@@ -1,0 +1,182 @@
+/* -------------------------------------------------------------------------- */
+/*                                   themes                                   */
+/* -------------------------------------------------------------------------- */
+//* theme_using:
+@mixin theme_blue() {
+  background-color: #564aff;
+  color: white;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   config                                   */
+/* -------------------------------------------------------------------------- */
+//*------------------------------ BP variables ------------------------------*/
+$font_size_1024: 16px;
+$title_size_1024: 22px;
+
+$font_size_768: 20px;
+$title_size_768: 26px;
+
+$font_size_568: 22px;
+$title_size_568: 28px;
+
+$font_size_320: 30px;
+$title_size_320: 34px;
+//*--------------------------------------------------------------------------*/
+@mixin center() {
+  display: flex;
+  align-items: center;
+}
+
+/*FUNCTION*/
+@function rem($size) {
+  $remSize: $size / 16px;
+  //Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+/*USAGE*/
+// .element-1{margin:rem(10px);}
+/* ------------------------------------ * ----------------------------------- */
+/* ------------------------------------ * ----------------------------------- */
+//? ---------------------------------- BLOCK --------------------------------- */
+.heading_array {
+  //!structure
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-areas: "name category price tva";
+  height: 50px;
+  padding: 0 15px;
+  font-size: rem(12px);
+  //!theme
+  @include theme_blue();
+}
+
+//? --------------------------------- ELEMENT -------------------------------- */
+.heading_array__product {
+  //!structure
+  @include center();
+  grid-area: name;
+  margin: 0;
+}
+
+.heading_array__category {
+  //!structure
+  @include center();
+  grid-area: category;
+  margin: 0;
+}
+
+.heading_array__price {
+  //!structure
+  @include center();
+  justify-content: flex-end;
+  grid-area: price;
+  margin: 0;
+}
+
+.heading_array__tva {
+  //!structure
+  @include center();
+  justify-content: flex-end;
+  grid-area: tva;
+  margin: 0;
+}
+
+.heading_array__tva_only {
+  display: none;
+  margin: 0;
+}
+
+//? -------------------------------------------------------------------------- *//
+//?                                 BREAK POINT                                *//
+//? -------------------------------------------------------------------------- *//
+//! ONLY STRUCTURE IS MODIFY
+@media screen and (max-width: 1366px) {
+  //?---------------------------------- BLOCK --------------------------------- */
+  .heading_array {
+    //!structure
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "name price"
+      "category tva";
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  //?---------------------------------- BLOCK --------------------------------- */
+  .heading_array {
+    height: 80px;
+  }
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .heading_array__product {
+    font-size: rem($font_size_1024);
+  }
+  .heading_array__category {
+    font-size: rem($font_size_1024);
+  }
+  .heading_array__price {
+    font-size: rem($font_size_1024);
+  }
+  .heading_array__tva {
+    font-size: rem($font_size_1024);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .heading_array__product {
+    font-size: rem($font_size_768);
+  }
+  .heading_array__category {
+    font-size: rem($font_size_768);
+  }
+  .heading_array__price {
+    font-size: rem($font_size_768);
+  }
+  .heading_array__tva {
+    font-size: rem($font_size_768);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .tva__show_hide {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  //?---------------------------------- BLOCK --------------------------------- */
+  .heading_array {
+    //!structure
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "category"
+      "price"
+      "tva";
+    height: 300px;
+    padding: 0 3px;
+  }
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .heading_array__product {
+    font-size: rem($font_size_320);
+    margin: auto;
+    // width: 100%;
+  }
+  .heading_array__category {
+    font-size: rem($font_size_320);
+    margin: auto;
+  }
+  .heading_array__price {
+    font-size: rem($font_size_320);
+    margin: auto;
+  }
+  .heading_array__tva {
+    font-size: rem($font_size_320);
+    margin: auto;
+  }
+}

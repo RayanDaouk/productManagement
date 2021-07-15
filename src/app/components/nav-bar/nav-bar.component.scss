@@ -1,0 +1,260 @@
+/* -------------------------------------------------------------------------- */
+/*                                   themes                                   */
+/* -------------------------------------------------------------------------- */
+//* theme_using:
+$color_primary: #564aff;
+$color_secondary: white;
+$spacing_menu: 25px;
+$font_size_menu: 12px;
+
+@mixin theme_blue() {
+  background-color: $color_primary;
+  color: $color_secondary;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   config                                   */
+/* -------------------------------------------------------------------------- */
+//*------------------------------ BP variables ------------------------------*/
+$font_size_1366: 16px;
+$title_size_1366: 22px;
+
+// $font_size_1024: 16px;
+// $title_size_1024: 22px;
+
+$font_size_768: 20px;
+$title_size_768: 26px;
+
+$title_size_568: 28px;
+//*--------------------------------------------------------------------------*/
+/*FUNCTION*/
+@function rem($size) {
+  $remSize: $size / 16px;
+  //Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+/*USAGE*/
+//.ele{
+//margin:rem(10px);
+//}
+/* ------------------------------------ * ----------------------------------- */
+/* ------------------------------------ * ----------------------------------- */
+
+//?---------------------------------- BLOCK --------------------------------- */
+.nav_bar {
+  //!structure
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 18vw;
+  //!theme
+  @include theme_blue();
+  transition: 0.3s;
+}
+
+//?--------------------------------- ELEMENT -------------------------------- */
+
+#nav_bar__btn_menu {
+  display: none;
+}
+
+#nav_bar__btn_back {
+  display: none;
+}
+
+/* ------------------------------------ . ----------------------------------- */
+// logo
+.nav_bar__logo {
+  //!structure
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.nav_bar__logo__circle_white {
+  //!structure
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  //!theme
+  background-color: $color_secondary;
+}
+
+.nav_bar__logo__circle_blue {
+  //!structure
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  //!theme
+  background-color: $color_primary;
+}
+
+.nav_bar__logo__tag {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ------------------------------------ . ----------------------------------- */
+.nav_bar__menu {
+  //!structure
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  font-size: rem($font_size_menu);
+
+  @at-root & li {
+    margin-bottom: $spacing_menu;
+  }
+  //!theme
+  @at-root & a {
+    text-decoration: none;
+    color: $color_secondary;
+  }
+}
+
+.nav_bar__menu__title {
+  //!structure
+  font-weight: normal;
+  font-size: rem($font_size_menu);
+  margin-bottom: $spacing_menu;
+}
+
+.nav_bar__menu__hr {
+  //!structure
+  width: 95%;
+  height: 1px;
+  margin-bottom: $spacing_menu;
+  //!theme
+  background-color: $color_secondary;
+}
+
+//?--------------------------------- MODIFIER ------------------------------- */
+
+.nav_bar__menu__link:before {
+  //!structure
+  content: "";
+  position: absolute;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  //!theme
+  background-color: $color_secondary;
+}
+.nav_bar__menu__link:hover {
+  //!structure
+  margin-left: 20px;
+}
+.nav_bar__menu__link:hover:before {
+  //!structure
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+/* ------------------------------------ . ----------------------------------- */
+
+//?-------------------------------------------------------------------------- */
+//?                                 BREAK POINT                                */
+//?-------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1366px) {
+  /* ---------------------------------- BLOCK --------------------------------- */
+  .nav_bar {
+    //!structure
+    height: 18vh;
+    width: 100vw;
+    //!theme
+    @include theme_blue();
+  }
+
+  /* --------------------------------- ELEMENT -------------------------------- */
+
+  .nav_bar__container {
+    //!structure
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+
+  .nav_bar__menu {
+    //!structure
+    display: none;
+    text-align: center;
+    font-size: rem($title_size_1366);
+  }
+
+  .nav_bar__menu__title {
+    //!structure
+    font-size: rem($title_size_1366);
+  }
+
+  #nav_bar__btn_menu {
+    //!structure
+    display: block;
+    width: 80px;
+  }
+
+  #nav_bar__btn_back {
+    //!structure
+    width: 80px;
+  }
+
+  /* -------------------------------- MODIFIER -------------------------------- */
+  .menu--active {
+    //!structure
+    display: block;
+  }
+
+  .menu--unactive {
+    //!structure
+    display: none;
+  }
+
+  .--active_grow_menu {
+    //!structure
+    height: 100vh;
+    top: 0;
+  }
+}
+
+// @media screen and (max-width: 1024px) {
+// }
+
+@media screen and (max-width: 768px) {
+  .nav_bar__menu {
+    //!structure
+    font-size: rem($title_size_768);
+    @at-root & li {
+      border-top: 2px solid white;
+      margin: auto;
+      padding: 10px 0;
+    }
+  }
+
+  .nav_bar__menu__title {
+    //!structure
+    font-size: rem($title_size_768);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .nav_bar__menu {
+    //!structure
+    font-size: rem($title_size_568);
+  }
+
+  .nav_bar__menu__title {
+    //!structure
+    font-size: rem($title_size_568);
+  }
+}
+
+// @media screen and (max-width: 320px) {
+// }

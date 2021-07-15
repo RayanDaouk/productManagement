@@ -1,0 +1,215 @@
+/* -------------------------------------------------------------------------- */
+/*                                   themes                                   */
+/* -------------------------------------------------------------------------- */
+//*DEFINE THEME HERE with mixin or var
+$color_primary: #564aff;
+$color_secondary: white;
+$txt_color: #707070;
+$txt_color_category: white;
+$border_color: rgb(245, 245, 245);
+/* -------------------------------------------------------------------------- */
+/*                                   config                                   */
+/* -------------------------------------------------------------------------- */
+//*------------------------------ BP variables ------------------------------*/
+$font_size_1024: 16px;
+$title_size_1024: 22px;
+
+$font_size_768: 20px;
+$title_size_768: 26px;
+
+$font_size_568: 22px;
+$title_size_568: 28px;
+
+$font_size_320: 30px;
+$title_size_320: 34px;
+//*--------------------------------------------------------------------------*/
+
+//*mixin to structure elements of "product"
+@mixin center() {
+  display: flex;
+  align-items: center;
+}
+
+/*FUNCTION*/
+@function rem($size) {
+  $remSize: $size / 16px;
+  //Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+/*USAGE*/
+//.ele{
+//font-size:rem(10px);
+//}
+/* ------------------------------------ * ----------------------------------- */
+/* ------------------------------------ * ----------------------------------- */
+//?---------------------------------- BLOCK --------------------------------- */
+.product {
+  //!structure
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-areas: "name category price tva";
+  padding: 15px 15px;
+  // height: 60px;
+  margin-top: 8px;
+  //!theme
+  background-color: $color_secondary;
+  color: $txt_color;
+  border: 1px solid $border_color;
+  box-shadow: 1px 2px 7px 1px #eeeeee;
+}
+//?--------------------------------- ELEMENT -------------------------------- */
+
+.product__name {
+  //!structure
+  grid-area: name;
+  @include center();
+  //!theme
+  font-weight: bold;
+}
+
+.product__category {
+  //!structure
+  grid-area: category;
+  @include center();
+  //!theme
+  color: $txt_color_category;
+}
+
+.product__price {
+  //!structure
+  grid-area: price;
+  @include center();
+  justify-content: flex-end;
+}
+
+.product__tva {
+  //!structure
+  grid-area: tva;
+  @include center();
+  justify-content: flex-end;
+}
+//?------------------------------- MODIFIER ------------------------------- */
+.product:hover {
+  border: 1px solid $color_primary;
+  cursor: pointer;
+}
+
+/*-------------------------------------------------------------------------- */
+/*                               category color                               */
+/* -------------------------------------------------------------------------- */
+//!structure of category color
+.structure_category {
+  border-radius: 20px 20px 20px 20px;
+  padding: 6px 12px;
+}
+
+//!theme - it's dynamic with js
+.womensClothing {
+  background-color: #ffa846;
+}
+.mensClothing {
+  background-color: #4683ff;
+}
+.jewelery {
+  background-color: #32b436;
+}
+.electronics {
+  background-color: magenta;
+}
+
+/* ------------------------------------ . ----------------------------------- */
+
+//? -------------------------------------------------------------------------- *//
+//?                                 BREAK POINT                                *//
+//? -------------------------------------------------------------------------- *//
+
+//! ONLY STRUCTURE IS MODIFY
+
+// @media screen and (max-width: 1366px) {
+// }
+
+@media screen and (max-width: 1024px) {
+  //?---------------------------------- BLOCK --------------------------------- */
+  .product {
+    //!structure
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "name price"
+      "category tva";
+    padding: 15px 15px;
+  }
+  //?--------------------------------- ELEMENT -------------------------------- */
+
+  .product__tva {
+    color: $color_primary;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .product__name {
+    font-size: rem($font_size_768);
+  }
+  .product__category {
+    font-size: rem($font_size_768);
+  }
+  .product__price {
+    font-size: rem($font_size_768);
+  }
+  .product__tva {
+    font-size: rem($font_size_768);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .product__name {
+    font-size: rem($font_size_568);
+  }
+  .product__category {
+    font-size: rem($font_size_568);
+  }
+  .product__price {
+    font-size: rem($font_size_568);
+  }
+  .product__tva {
+    font-size: rem($font_size_568);
+    color: $color_primary;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  //?---------------------------------- BLOCK --------------------------------- */
+  .product {
+    //!structure
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "category"
+      "price"
+      "tva";
+    padding: 15px 15px;
+  }
+
+  //?--------------------------------- ELEMENT -------------------------------- */
+  .product__name {
+    margin: auto;
+    text-align: center;
+  }
+  .product__category {
+    margin: auto;
+    text-align: center;
+    font-size: rem($font_size_320);
+  }
+  .product__price {
+    margin: auto;
+    font-size: rem($font_size_320);
+  }
+  .product__tva {
+    margin: auto;
+    font-size: rem($font_size_320);
+  }
+}
